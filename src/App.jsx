@@ -13,7 +13,6 @@ function App() {
   const [customerList, setCustomerList] = useState(Object.keys(localStorage).filter(item => item !== "last token"));
 
   const [lastToken, setLastToken] = useState(Number(localStorage.getItem('last token')) || 1);
-
   useEffect(() => {
     localStorage.setItem("last token", lastToken);
   }, [lastToken])
@@ -64,7 +63,6 @@ const getFormattedTimeAndDate = () =>{
   }
 
   const addToken = (tokenNumber = null, customerName = null) => {
-    // const customerName = customerNameRef.current.value.trim();
 
     // If token is clicked or name is entered
     if (tokenNumber || customerName) {
@@ -84,23 +82,29 @@ const getFormattedTimeAndDate = () =>{
         update();
         // closeModal();
         setIspaid(false);
+        playAudio(`${customer_order_info.name}  ऐड हुआ`)
     }
 };
 
+  const playAudio = (text) =>{
+    const utterance = new SpeechSynthesisUtterance(text);
+        utterance.lang = "hi-IN";
+        utterance.pitch = 1;
+        utterance.rate = 1;
+        window.speechSynthesis.speak(utterance);
+  }
   return (
     <>
       <Navbar showModal={setShowModal} setLastToken={setLastToken}/>
       <div className="flex mx-auto w-full py-2 px-4 gap-2" style={{ height: 'calc(100dvh - 76px)' }}>
 
-        <LiveOrder billRef={billRef} paid={ispaid} setIsPaid={setIspaid} list={customerList}  updateList={setCustomerList} currentCustomer={currentCustomer} setCurrent={setCurrentCustomer} addToken={addToken} updateLastToken={setLastToken} lastToken={lastToken} update={update}/>
+        <LiveOrder billRef={billRef} paid={ispaid} setIsPaid={setIspaid} list={customerList}  updateList={setCustomerList} currentCustomer={currentCustomer} setCurrent={setCurrentCustomer} addToken={addToken} updateLastToken={setLastToken} lastToken={lastToken} update={update} playAudio={playAudio}/>
 
         <Bill ref={billRef} foodItems={FoodItems} current={currentCustomer} update={update} isPaid={ispaid} setCurrent={setCurrentCustomer}/>
 
         <Menu billRef={billRef} foodItems={FoodItems} currentCustomer={currentCustomer} update={update} />
 
         {ShowModal && <Modal closeModal={() => { setShowModal(false) }} setCurrent={setCurrentCustomer} updateList={setCustomerList} setIspaid={setIspaid} list={customerList} paid={ispaid} addToken={addToken}/>}
-
-      
 
       </div>
 

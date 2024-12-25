@@ -1,8 +1,6 @@
 import React, { useState } from "react";
 import { MdDeleteForever } from "react-icons/md";
 import { RiHandCoinFill } from "react-icons/ri";
-// import { FcPaid } from "react-icons/fc";
-// import { useSwipeable } from "react-swipeable";
 
 const SingleOrder = ({
     billRef,
@@ -12,6 +10,7 @@ const SingleOrder = ({
     updateList,
     currentCustomer,
     setCurrent,
+    playAudio,
 }) => {
     const [startX, setStartX] = useState(0);
     const [deltaX, setDeltaX] = useState(0);
@@ -47,12 +46,14 @@ const SingleOrder = ({
     const markAsPaid = (event) => {
         event.stopPropagation();
         let paid_order = JSON.parse(localStorage.getItem(customerId));
+        let naam = paid_order.name;
         paid_order.paid = true;
         localStorage.setItem(customerId, JSON.stringify(paid_order));
         updateList(Object.keys(localStorage));
         if (Number(currentCustomer) === Number(customer.id)) {
             setCurrent(NaN);
         }
+        playAudio(`${naam}  हटाया गया`);
     };
 
     const clickSetCurrent = (e) => {
@@ -77,8 +78,6 @@ const SingleOrder = ({
 
     // Dynamic styles for fade/highlight
     const swipeStyle = {
-        // opacity: 1 - Math.min(Math.abs(deltaX) / 100, 0.6), // Fade effect
-        // backgroundColor: deltaX > 10 ? "green" : (Number(currentCustomer) === Number(customer.id)) ? "white" : "inherit", // Highlight effect
         transform: `translateX(${deltaX}px)` // Visual swipe movement
     };
 

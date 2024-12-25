@@ -4,9 +4,7 @@ import { MdFastfood, MdNoFood, MdDeleteForever } from "react-icons/md";
 import { FcPaid } from "react-icons/fc";
 import SingleOrder from './SingleOrder';
 
-const LiveOrder = ({ paid, billRef, setIsPaid, list, updateList, currentCustomer, setCurrent, addToken, updateLastToken, lastToken, update = { update } }) => {
-
-
+const LiveOrder = ({ paid, billRef, setIsPaid, list, updateList, currentCustomer, setCurrent, addToken, updateLastToken, lastToken, update, playAudio }) => {
   const [orders, setOrders] = useState([])
 
   useEffect(() => {
@@ -58,12 +56,11 @@ const LiveOrder = ({ paid, billRef, setIsPaid, list, updateList, currentCustomer
 
       <div className="order-list flex flex-col gap-4 overflow-auto scrollbar-custom h-full ">
         {orders.map((customer, index) => {
-          return <SingleOrder billRef={billRef} paid={paid} customer={customer} customerId={customer.id} key={customer.id} updateList={updateList} currentCustomer={currentCustomer} setCurrent={setCurrent} />
+          return <SingleOrder billRef={billRef} paid={paid} customer={customer} customerId={customer.id} key={customer.id} updateList={updateList} currentCustomer={currentCustomer} setCurrent={setCurrent} playAudio={playAudio} />
         })}
       </div>
 
 {
-  // paid && <button className='p-4 rounded-md bg-red-600 text-white font-bold sticky bottom-2 w-full' onClick={() => { localStorage.clear(); update(); setCurrent(NaN); }}>Clear</button>
   paid && <button className='p-4 rounded-md bg-red-600 text-white font-bold sticky bottom-2 w-full' onClick={clear}>Clear</button>
 }
       <button className='p-4 rounded-md bg-primary text-white font-bold sticky bottom-2 w-full' onClick={newToken}>New Token</button>
