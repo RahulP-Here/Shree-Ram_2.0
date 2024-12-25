@@ -1,0 +1,21 @@
+@media print {
+    /* Hide all elements except the bill */
+    body * {
+      visibility: hidden;
+      scroll-behavior: smooth;
+    }
+  
+    /* Show only the bill section */
+    .bill-container, .bill-container * {
+      visibility: visible;
+    }
+  
+    /* Ensure that the bill prints nicely */
+    .bill-container {
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 100%;
+    }
+  }
+  

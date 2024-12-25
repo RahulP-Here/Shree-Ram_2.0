@@ -1,0 +1,60 @@
+.item{
+    position: relative;
+    padding: 2rem 0;
+    /* width: 400px; */
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+}
+
+.item img{
+    position: absolute;
+    z-index: 1;
+    top: 0;
+    left: 0%   ;
+    height: 100%;
+}
+
+.item div{
+    position: relative;
+    z-index: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0rem;
+    align-items: flex-end;
+    color: white;
+    /* padding-left: 2rem; */
+    width: 100%;
+    text-align: center;
+    font-weight: bolder;
+}
+
+.item div::before, .item div::after{
+    content: "";
+    position: absolute;
+    left: 0;
+    background: url('../../public/torn.svg') bottom;
+    width: 100%;
+    height: 20px;
+}
+
+.item div::before{
+    top: 100%;
+}
+
+.item div::after{
+    transform: rotate(180deg);
+    bottom: 100%;
+}
+
+
+.item div span{
+    padding-right: 5px;
+    font-size: 1.5rem;
+}
+
+
+.item div span:nth-child(2){
+    color: red;
+    font-size: 1rem;
+}
