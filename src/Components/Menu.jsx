@@ -1,11 +1,13 @@
 import React from 'react';
 import './Menu.css';
 
-const Menu = ({ foodItems, currentCustomer, update, billRef }) => {
+const Menu = ({ foodItems, currentCustomer, update, billRef, playAudio }) => {
 
-    const addItem = (id) => {
+    const addItem = (id, name) => {
         if (currentCustomer) {
             let currentCustomer_order_info = JSON.parse(localStorage.getItem(currentCustomer));
+
+            let naam = currentCustomer_order_info.name;
 
             // for time stamp
             const now = new Date();
@@ -28,6 +30,7 @@ const Menu = ({ foodItems, currentCustomer, update, billRef }) => {
                 localStorage.setItem(currentCustomer, JSON.stringify(currentCustomer_order_info));
                 update();
                 billRef.current.handleAddItem();
+                playAudio(`${name} ${naam}`)
             }
         }
     }
@@ -39,7 +42,7 @@ const Menu = ({ foodItems, currentCustomer, update, billRef }) => {
                 foodItems.map(item => {
                     return (
 
-                        <div key={item.id} className="item cursor-pointer" onClick={() => { addItem(item.id) }}>
+                        <div key={item.id} className="pop-item-click item cursor-pointer" onClick={() => { addItem(item.id, item.hi_name) }}>
                             <img src={item.pic_path} />
                             <div className='bg-primary'>
                                 <span>{item.name}</span>

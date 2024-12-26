@@ -15,3 +15,19 @@
 .transition-transform {
     transition: transform 0.3s ease, background-color 0.3s ease;
   }
+
+.pop-effect-button{
+    transition: all 0.2s;
+}
+
+.pop-effect-button:active{
+    transform: scale(0.9);
+}
+
+.pop-item-click > img{
+    transition: all 0.2s;
+}
+
+.pop-item-click:active > img{
+    transform: scale(0.9);
+}

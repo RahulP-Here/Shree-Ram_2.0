@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { MdDeleteForever } from "react-icons/md";
 import { RiHandCoinFill } from "react-icons/ri";
 
+
 const SingleOrder = ({
     billRef,
     paid,
@@ -22,6 +23,8 @@ const SingleOrder = ({
         if (Number(currentCustomer) === Number(customer.id)) {
             setCurrent(NaN);
         }
+        
+        
     };
 
     const handleTouchStart = (e) => {
@@ -78,11 +81,13 @@ const SingleOrder = ({
 
     // Dynamic styles for fade/highlight
     const swipeStyle = {
+        // opacity: 1 - Math.min(Math.abs(deltaX) / 100, 0.6), // Fade effect
+        // backgroundColor: deltaX > 10 ? "green" : (Number(currentCustomer) === Number(customer.id)) ? "white" : "inherit", // Highlight effect
         transform: `translateX(${deltaX}px)` // Visual swipe movement
     };
 
     return (
-        <div className="relative ">
+        <div className="relative pop-effect-button">
             <div className="redAnimation bg-[#388E3C] absolute inset-0 z-0 flex text-white items-center pl-3 text-3xl">
                 <RiHandCoinFill />
             </div>

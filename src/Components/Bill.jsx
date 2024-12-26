@@ -54,14 +54,14 @@ const BillItem = ({ index, food_name, food_img, item, current, current_Order, up
               <div className="flex items-center justify-center space-x-2">
                 <button
                   onClick={subQty}
-                  className="px-2 py-1 text-xl font-semibold bg-gray-200 hover:bg-gray-300 rounded"
+                  className="pop-effect-button px-3 py-2 text-xl font-semibold bg-gray-300 rounded"
                 >
                   -
                 </button>
                 <span className="font-semibold text-gray-700 text-lg">{item.item_quantity}</span>
                 <button
                   onClick={addQty}
-                  className="px-2 py-1 text-xl font-semibold bg-gray-200 hover:bg-gray-300 rounded"
+                  className="pop-effect-button px-3 py-2 text-xl font-semibold bg-gray-300 rounded"
                 >
                   +
                 </button>
@@ -82,7 +82,7 @@ const BillItem = ({ index, food_name, food_img, item, current, current_Order, up
 }
 
 
-const Bill = forwardRef(({ foodItems, current, update, isPaid, setCurrent }, ref) => {
+const Bill = forwardRef(({ foodItems, current, update, isPaid, setCurrent, playAudio }, ref) => {
   const billItemContainerRef = useRef(null);
   const [wasItemAdded, setWasItemAdded] = useState(false);
 
@@ -97,10 +97,13 @@ const Bill = forwardRef(({ foodItems, current, update, isPaid, setCurrent }, ref
 
   const markAsPaid = () => {
     let paid_order = JSON.parse(localStorage.getItem(current));
-    paid_order.paid = !paid_order.paid;
+    let naam = paid_order.name;
+    let ispaid = paid_order.paid
+    paid_order.paid = !isPaid;
     localStorage.setItem(current, JSON.stringify(paid_order));
     update();
     setCurrent(NaN);
+    playAudio(isPaid ? `${naam}  वापस लाया गया` : `${naam}  हटाया गया`);
   };
 
   useEffect(() => {
@@ -164,16 +167,16 @@ const Bill = forwardRef(({ foodItems, current, update, isPaid, setCurrent }, ref
         <div className="sticky border-t border-t-black bg-alwhite py-2 px-1 pr-6 flex justify-between items-center">
           <div className="flex gap-4">
             {current_Order.ordered_items.length !== 0 && (
-              <button onClick={() => window.print()} className="bg-blue-500 text-white px-4 py-2">
+              <button onClick={() => window.print()} className="pop-effect-button bg-blue-500 text-white px-4 py-2">
                 Print Bill
               </button>)}
             {(!isPaid && current_Order.ordered_items.length !== 0) && (
-              <button onClick={markAsPaid} className="bg-[#388E3C] text-white px-4 py-2">
+              <button onClick={markAsPaid} className="pop-effect-button bg-[#388E3C] text-white px-4 py-2">
                 Paid
               </button>
             )}
             {isPaid && (
-              <button onClick={markAsPaid} className="bg-[#EF4444] text-white px-4 py-2">
+              <button onClick={markAsPaid} className="pop-effect-button bg-[#EF4444] text-white px-4 py-2">
                 UnPaid
               </button>
             )}

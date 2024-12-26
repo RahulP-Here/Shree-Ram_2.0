@@ -13,6 +13,7 @@ function App() {
   const [customerList, setCustomerList] = useState(Object.keys(localStorage).filter(item => item !== "last token"));
 
   const [lastToken, setLastToken] = useState(Number(localStorage.getItem('last token')) || 1);
+
   useEffect(() => {
     localStorage.setItem("last token", lastToken);
   }, [lastToken])
@@ -25,14 +26,14 @@ function App() {
   const billRef = useRef();
 
   const FoodItems = [
-    { id: 1, name: 'મીક્ષ પ્લેટ', price: 45, pic_path: '/images/foodItems/mix-plate.png' },
-    { id: 2, name: 'મસાલા ઢોંસા', price: 60, pic_path: '/images/foodItems/masala-dhosa.png' },
-    { id: 3, name: 'બ્રેડ પકોડા', price: 25, pic_path: '/images/foodItems/bread-pakoda.png' },
-    { id: 4, name: 'સિંગલ નંગ ', price: 15, pic_path: '/images/foodItems/single-piece.png' },
-    { id: 5, name: 'મસાલા નંગ ', price: 20, pic_path: '/images/foodItems/masala-piece.png' },
-    { id: 6, name: 'પેપર ઢોંસા', price: 40, pic_path: '/images/foodItems/paper-dhosa.png' },
-    { id: 7, name: 'પાણી ની બોટલ', price: 10, pic_path: '/images/foodItems/water-bottle.png' },
-    { id: 8, name: 'મસાલા છાશ', price: 10, pic_path: '/images/foodItems/masala-chass.png' },
+    { id: 1, name: 'મીક્ષ પ્લેટ', hi_name:'मिक्स प्लेट', price: 45, pic_path: '/images/foodItems/mix-plate.png' },
+    { id: 2, name: 'મસાલા ઢોંસા', hi_name:'मसाला धोंसा', price: 60, pic_path: '/images/foodItems/masala-dhosa.png' },
+    { id: 3, name: 'બ્રેડ પકોડા', hi_name:'ब्रेड पकोड़ा', price: 25, pic_path: '/images/foodItems/bread-pakoda.png' },
+    { id: 4, name: 'સિંગલ નંગ', hi_name:'सिंगल नंग', price: 15, pic_path: '/images/foodItems/single-piece.png' },
+    { id: 5, name: 'મસાલા નંગ ', hi_name:'मसाला नंग', price: 20, pic_path: '/images/foodItems/masala-piece.png' },
+    { id: 6, name: 'પેપર ઢોંસા', hi_name:'पेपर धोंसा', price: 40, pic_path: '/images/foodItems/paper-dhosa.png' },
+    { id: 7, name: 'પાણી ની બોટલ', hi_name:'पानी की बोतल', price: 10, pic_path: '/images/foodItems/water-bottle.png' },
+    { id: 8, name: 'મસાલા છાશ', hi_name:'मसाला छास', price: 10, pic_path: '/images/foodItems/masala-chass.png' },
   ];
 
 
@@ -63,6 +64,7 @@ const getFormattedTimeAndDate = () =>{
   }
 
   const addToken = (tokenNumber = null, customerName = null) => {
+    // const customerName = customerNameRef.current.value.trim();
 
     // If token is clicked or name is entered
     if (tokenNumber || customerName) {
@@ -100,9 +102,9 @@ const getFormattedTimeAndDate = () =>{
 
         <LiveOrder billRef={billRef} paid={ispaid} setIsPaid={setIspaid} list={customerList}  updateList={setCustomerList} currentCustomer={currentCustomer} setCurrent={setCurrentCustomer} addToken={addToken} updateLastToken={setLastToken} lastToken={lastToken} update={update} playAudio={playAudio}/>
 
-        <Bill ref={billRef} foodItems={FoodItems} current={currentCustomer} update={update} isPaid={ispaid} setCurrent={setCurrentCustomer}/>
+        <Bill ref={billRef} foodItems={FoodItems} current={currentCustomer} update={update} isPaid={ispaid} setCurrent={setCurrentCustomer} playAudio={playAudio}/>
 
-        <Menu billRef={billRef} foodItems={FoodItems} currentCustomer={currentCustomer} update={update} />
+        <Menu billRef={billRef} foodItems={FoodItems} currentCustomer={currentCustomer} update={update} playAudio={playAudio}/>
 
         {ShowModal && <Modal closeModal={() => { setShowModal(false) }} setCurrent={setCurrentCustomer} updateList={setCustomerList} setIspaid={setIspaid} list={customerList} paid={ispaid} addToken={addToken}/>}
 

@@ -1,10 +1,12 @@
 import React from 'react'
 import { useState, useRef, useEffect } from 'react';
 import { MdFastfood, MdNoFood, MdDeleteForever } from "react-icons/md";
-import { FcPaid } from "react-icons/fc";
+// import { FcPaid } from "react-icons/fc";
 import SingleOrder from './SingleOrder';
 
 const LiveOrder = ({ paid, billRef, setIsPaid, list, updateList, currentCustomer, setCurrent, addToken, updateLastToken, lastToken, update, playAudio }) => {
+
+
   const [orders, setOrders] = useState([])
 
   useEffect(() => {
@@ -61,9 +63,10 @@ const LiveOrder = ({ paid, billRef, setIsPaid, list, updateList, currentCustomer
       </div>
 
 {
-  paid && <button className='p-4 rounded-md bg-red-600 text-white font-bold sticky bottom-2 w-full' onClick={clear}>Clear</button>
+  // paid && <button className='p-4 rounded-md bg-red-600 text-white font-bold sticky bottom-2 w-full' onClick={() => { localStorage.clear(); update(); setCurrent(NaN); }}>Clear</button>
+  paid && <button className='pop-effect-button p-4 rounded-md bg-red-600 text-white font-bold sticky bottom-2 w-full' onClick={clear}>Clear</button>
 }
-      <button className='p-4 rounded-md bg-primary text-white font-bold sticky bottom-2 w-full' onClick={newToken}>New Token</button>
+      <button className='pop-effect-button p-4 rounded-md bg-primary text-white font-bold sticky bottom-2 w-full' onClick={newToken}>New Token</button>
 
     </aside>
   )

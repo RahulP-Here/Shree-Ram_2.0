@@ -16,8 +16,8 @@ const Navbar = ({ showModal, setLastToken }) => {
         </div>
         <nav>
           <div className='flex gap-4'>
-          <button className='py-2 px-6 rounded-lg font-semibold bg-primary text-white' onClick={addCustomer}>ADD</button>
-          <button className='py-2 px-6 rounded-lg font-semibold bg-red-600 text-white' onClick={()=>{setLastToken(1)}}>Reset</button>
+          <button className='py-2 px-6 rounded-lg font-semibold bg-primary text-white pop-effect-button' onClick={addCustomer}>ADD</button>
+          <button className='py-2 px-6 rounded-lg font-semibold bg-red-600 text-white pop-effect-button' onClick={()=>{setLastToken(1)}}>Reset</button>
           
           </div>
         </nav>

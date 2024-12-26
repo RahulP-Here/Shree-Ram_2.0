@@ -94,7 +94,7 @@ const Modal = ({ closeModal, setCurrent, updateList, setIspaid, list, getDateTim
                     />
                     <button
                         onClick={() => add(null)}
-                        className="px-4 py-2 text-black bg-primary rounded hover:bg-primary-dark transition"
+                        className="pop-effect-button px-4 py-2 text-black bg-primary rounded hover:bg-primary-dark transition"
                     >
                         ADD
                     </button>
