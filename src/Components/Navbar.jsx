@@ -1,6 +1,6 @@
 import React from 'react'
 
-const Navbar = ({ showModal, setLastToken }) => {
+const Navbar = ({ showModal, showModal2, setLastToken }) => {
  
 
   const addCustomer = () => {
@@ -16,6 +16,7 @@ const Navbar = ({ showModal, setLastToken }) => {
         </div>
         <nav>
           <div className='flex gap-4'>
+          <button className='py-2 px-6 rounded-lg font-semibold bg-primary text-white pop-effect-button' onClick={()=>{showModal2(true)}}>SET</button>
           <button className='py-2 px-6 rounded-lg font-semibold bg-primary text-white pop-effect-button' onClick={addCustomer}>ADD</button>
           <button className='py-2 px-6 rounded-lg font-semibold bg-red-600 text-white pop-effect-button' onClick={()=>{setLastToken(1)}}>Reset</button>
           

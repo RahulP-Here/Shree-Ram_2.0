@@ -9,6 +9,7 @@ import Modal from './Components/Modal'
 function App() {
 
   const [ShowModal, setShowModal] = useState(false)
+  const [ShowModal2, setShowModal2] = useState(false)
 
   const [customerList, setCustomerList] = useState(Object.keys(localStorage).filter(item => item !== "last token"));
 
@@ -26,7 +27,7 @@ function App() {
   const billRef = useRef();
 
   const FoodItems = [
-    { id: 1, name: 'મીક્ષ પ્લેટ', hi_name:'मिक्स प्लेट', price: 45, pic_path: '/images/foodItems/mix-plate.png' },
+    { id: 1, name: 'સિંગલ પ્લેટ', hi_name:'1 प्लेट', price: 45, pic_path: '/images/foodItems/mix-plate.png' },
     { id: 2, name: 'મસાલા ઢોંસા', hi_name:'मसाला धोंसा', price: 60, pic_path: '/images/foodItems/masala-dhosa.png' },
     { id: 3, name: 'બ્રેડ પકોડા', hi_name:'ब्रेड पकोड़ा', price: 25, pic_path: '/images/foodItems/bread-pakoda.png' },
     { id: 4, name: 'સિંગલ નંગ', hi_name:'सिंगल नंग', price: 15, pic_path: '/images/foodItems/single-piece.png' },
@@ -64,8 +65,6 @@ const getFormattedTimeAndDate = () =>{
   }
 
   const addToken = (tokenNumber = null, customerName = null) => {
-    // const customerName = customerNameRef.current.value.trim();
-
     // If token is clicked or name is entered
     if (tokenNumber || customerName) {
         let customer_id = Date.now();
@@ -82,7 +81,6 @@ const getFormattedTimeAndDate = () =>{
         // Update current customer and UI
         setCurrentCustomer(customer_id);
         update();
-        // closeModal();
         setIspaid(false);
         playAudio(`${customer_order_info.name}  ऐड हुआ`)
     }
@@ -97,7 +95,7 @@ const getFormattedTimeAndDate = () =>{
   }
   return (
     <>
-      <Navbar showModal={setShowModal} setLastToken={setLastToken}/>
+      <Navbar showModal={setShowModal} showModal2={setShowModal2} setLastToken={setLastToken}/>
       <div className="flex mx-auto w-full py-2 px-4 gap-2" style={{ height: 'calc(100dvh - 76px)' }}>
 
         <LiveOrder billRef={billRef} paid={ispaid} setIsPaid={setIspaid} list={customerList}  updateList={setCustomerList} currentCustomer={currentCustomer} setCurrent={setCurrentCustomer} addToken={addToken} updateLastToken={setLastToken} lastToken={lastToken} update={update} playAudio={playAudio}/>
@@ -106,7 +104,11 @@ const getFormattedTimeAndDate = () =>{
 
         <Menu billRef={billRef} foodItems={FoodItems} currentCustomer={currentCustomer} update={update} playAudio={playAudio}/>
 
-        {ShowModal && <Modal closeModal={() => { setShowModal(false) }} setCurrent={setCurrentCustomer} updateList={setCustomerList} setIspaid={setIspaid} list={customerList} paid={ispaid} addToken={addToken}/>}
+        {ShowModal && <Modal closeModal={() => { setShowModal(false) }} list={customerList} addToken={addToken} setBtn={false} setLastToken={setLastToken}/>}
+
+        {ShowModal2 && <Modal closeModal={() => { setShowModal2(false) }} list={customerList} addToken={addToken} setBtn={true} setLastToken={setLastToken}/>}
+
+          
 
       </div>
 
