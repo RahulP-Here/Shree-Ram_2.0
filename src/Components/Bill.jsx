@@ -54,14 +54,14 @@ const BillItem = ({ index, food_name, food_img, item, current, current_Order, up
               <div className="flex items-center justify-center space-x-2">
                 <button
                   onClick={subQty}
-                  className="pop-effect-button px-3 py-2 text-xl font-semibold bg-gray-300 rounded"
+                  className="pop-effect-button px-3 py-2 text-xl font-semibold bg-gray-300 hover:bg-gray-200 rounded"
                 >
                   -
                 </button>
                 <span className="font-semibold text-gray-700 text-lg">{item.item_quantity}</span>
                 <button
                   onClick={addQty}
-                  className="pop-effect-button px-3 py-2 text-xl font-semibold bg-gray-300 rounded"
+                  className="pop-effect-button px-3 py-2 text-xl font-semibold bg-gray-300 hover:bg-gray-200 rounded"
                 >
                   +
                 </button>
@@ -99,11 +99,11 @@ const Bill = forwardRef(({ foodItems, current, update, isPaid, setCurrent, playA
     let paid_order = JSON.parse(localStorage.getItem(current));
     let naam = paid_order.name;
     let ispaid = paid_order.paid
-    paid_order.paid = !isPaid;
+    paid_order.paid = !ispaid;
     localStorage.setItem(current, JSON.stringify(paid_order));
     update();
     setCurrent(NaN);
-    playAudio(isPaid ? `${naam}  वापस लाया गया` : `${naam}  हटाया गया`);
+    playAudio(ispaid ? `${naam}  वापस लाया गया` : `${naam}  हटाया गया`);
   };
 
   useEffect(() => {

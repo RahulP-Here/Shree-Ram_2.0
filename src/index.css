@@ -9,6 +9,7 @@
     padding: 0;
     box-sizing: border-box;
     user-select: none;
+    scroll-behavior: smooth;
 }
 
 
@@ -31,3 +32,4 @@
 .pop-item-click:active > img{
     transform: scale(0.9);
 }
+

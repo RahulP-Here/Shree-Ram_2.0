@@ -1,7 +1,17 @@
 import React from 'react';
+import { useEffect, useRef } from 'react';
 import './Menu.css';
 
 const Menu = ({ foodItems, currentCustomer, update, billRef, playAudio }) => {
+
+    const menuContainer = useRef(null);
+
+    useEffect(() => {
+        if (menuContainer.current) {
+            menuContainer.current.scrollTop = 0;
+        }
+    }, [currentCustomer])
+
 
     const addItem = (id, name) => {
         if (currentCustomer) {
@@ -36,7 +46,7 @@ const Menu = ({ foodItems, currentCustomer, update, billRef, playAudio }) => {
     }
 
     return (
-        <div className='min-w-[16rem] w-[25%] relative flex flex-col h-full bg-light-primary py-1 gap-2 rounded-md font-gujarati overflow-auto scrollbar-custom border border-black'>
+        <div ref={menuContainer} className='menu min-w-[16rem] w-[25%] relative flex flex-col h-full bg-light-primary py-1 gap-2 rounded-md font-gujarati overflow-auto scrollbar-custom border border-black'>
 
             {
                 foodItems.map(item => {

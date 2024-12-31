@@ -33,8 +33,8 @@ function App() {
     { id: 4, name: 'સિંગલ નંગ', hi_name:'सिंगल नंग', price: 15, pic_path: '/images/foodItems/single-piece.png' },
     { id: 5, name: 'મસાલા નંગ ', hi_name:'मसाला नंग', price: 20, pic_path: '/images/foodItems/masala-piece.png' },
     { id: 6, name: 'પેપર ઢોંસા', hi_name:'पेपर धोंसा', price: 40, pic_path: '/images/foodItems/paper-dhosa.png' },
-    { id: 7, name: 'પાણી ની બોટલ', hi_name:'पानी की बोतल', price: 10, pic_path: '/images/foodItems/water-bottle.png' },
-    { id: 8, name: 'મસાલા છાશ', hi_name:'मसाला छास', price: 10, pic_path: '/images/foodItems/masala-chass.png' },
+    { id: 7, name: 'મસાલા છાશ', hi_name:'मसाला छास', price: 10, pic_path: '/images/foodItems/masala-chass.png' },
+    { id: 8, name: 'પાણી ની બોટલ', hi_name:'पानी की बोतल', price: 10, pic_path: '/images/foodItems/water-bottle.png' },
   ];
 
 
@@ -107,8 +107,6 @@ const getFormattedTimeAndDate = () =>{
         {ShowModal && <Modal closeModal={() => { setShowModal(false) }} list={customerList} addToken={addToken} setBtn={false} setLastToken={setLastToken}/>}
 
         {ShowModal2 && <Modal closeModal={() => { setShowModal2(false) }} list={customerList} addToken={addToken} setBtn={true} setLastToken={setLastToken}/>}
-
-          
 
       </div>
 
